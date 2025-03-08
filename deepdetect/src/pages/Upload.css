@@ -1,0 +1,78 @@
+.upload-container {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    height:100vh;
+  }
+  
+  .upload-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 400px;
+    border: 2px dashed #999;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    color: #666;
+    background: white;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .upload-box p{
+    padding-top:20px;
+  }
+  .upload-box:hover {
+    border-color: #4b0082;
+    color: #4b0082;
+  }
+  .analyze-btn {
+    background: #0d0d93;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 18px;
+    text-decoration: none;
+  }
+  .upload-btn {
+    background: #0d0d93;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 18px;
+  }
+  
+  .upload-btn:hover {
+    background: #4b0082;
+  }
+  
+  .upload-preview {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  
+  .dragging {
+    border: 2px dashed #4b0082;
+    background: rgba(75, 0, 130, 0.05);
+  }
+  

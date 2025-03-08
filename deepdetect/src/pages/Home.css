@@ -1,0 +1,147 @@
+/* Home.css - Modernized Design */
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: white;
+  color: #222;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
+
+.navbar {
+  height: 230px;
+  position: fixed; /* Ensures it stays at the top */
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1270px;
+  padding: 20px 0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 290px;
+  margin: 0;
+  padding: 0;
+}
+.nav-links{
+  padding-right: 100px;
+}
+.nav-links .btn {
+  text-decoration: none;
+  background: #0d0d93;;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: 0.3s;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(45, 81, 153, 0.4);
+}
+
+.nav-links .btn:hover {
+  background: #4b0082;
+  box-shadow: 0 6px 15px rgba(102, 146, 179, 0.6);
+}
+
+.content {
+  padding-top:200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 0;
+  gap: 30px;
+}
+
+.text-section {
+  flex: 1;
+  padding-right: 50px;
+  text-align: left;
+}
+
+.text-section h1 {
+  font-size: 68px;
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+
+.text-section p {
+  font-size: 20px;
+  opacity: 0.7;
+}
+
+.image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.upload-image {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+}
+
+.upload-image:hover {
+  transform: scale(1.05);
+}
+
+.btn {
+  display: inline-block;
+  background: #0d0d93;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(45, 81, 153, 0.4);
+}
+
+.btn:hover {
+  background:   #4b0082;
+  box-shadow: 0 6px 15px rgba(102, 146, 179, 0.6);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Flowy Gradient Animation for Text */
+.flowy-text {
+  font-size: 48px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #4b0082, #0000ff, #4b0082);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200% 100%;
+  animation: colorFlow 3s infinite linear;
+}
+
+@keyframes colorFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
