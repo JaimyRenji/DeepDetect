@@ -1,21 +1,24 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import "./Analysis.css";
+import "./Upload.css";
+
 const Analysis = () => {
   const location = useLocation();
-  const { prediction, f1Score, accuracy } = location.state || {}; 
+  const { prediction, prediction_score, f1Score, accuracy } = location.state || {}; 
 
   return (
-    <div>
+    <div className="analysis-container">
       <h1 className="heading">Detailed Analysis</h1>
+      
       {prediction ? (
         <>
-          <p className="items">Prediction: {prediction}</p>
-          <p className="items">F1 Score: {f1Score}</p>
-          <p className="items">Accuracy: {accuracy}</p>
+          <h2 className="items">Prediction: <span className={prediction === "Real" ? "real" : "fake"}>{prediction}</span></h2>
+          <p className="items">Confidence Score: {100-Math.round(prediction_score * 100)}%</p>
+          
         </>
       ) : (
-        <p>No analysis data available. Please upload and analyze an image first.</p>
+        <p className="no-data">No analysis data available. Please upload and analyze an image first.</p>
       )}
     </div>
   );
