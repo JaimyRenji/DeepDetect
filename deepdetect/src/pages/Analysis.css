@@ -1,0 +1,13 @@
+.heading{
+    font-family: 'Poppins', sans-serif;
+    color:#0d0d93;
+    font-size:50px;
+    text-align:center;
+    padding-top:10px;
+    padding-bottom:30px;
+}
+.items{
+    font-family: 'Poppins', sans-serif;
+    font-size:20px;
+    text-align:center;
+}
