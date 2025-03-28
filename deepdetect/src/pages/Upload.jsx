@@ -6,13 +6,12 @@ import "./Upload.css";
 const Upload = () => {
   const [preview, setPreview] = useState(null);
   const [dragging, setDragging] = useState(false);
+  const [boundingBox, setBoundingBox] = useState({}); 
   const [prediction, setPrediction] = useState(null);
   const [prediction_score, setPredictionScore] = useState(null);
-  const [f1Score, setF1Score] = useState(null);
-  const [accuracy, setAccuracy] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [loading, setLoading] = useState(false); // New loading state
-  const navigate = useNavigate(); // Hook to navigate between pages
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -22,33 +21,13 @@ const Upload = () => {
     }
   };
 
-  const handleDragOver = (event) => {
-    event.preventDefault();
-    setDragging(true);
-  };
-
-  const handleDragLeave = () => {
-    setDragging(false);
-  };
-
-  const handleDrop = (event) => {
-    event.preventDefault();
-    setDragging(false);
-    const file = event.dataTransfer.files[0];
-    if (file) {
-      setSelectedFile(file);
-      setPreview(URL.createObjectURL(file));
-    }
-  };
-
   const handleAnalyze = async () => {
     if (!selectedFile) {
-      alert("Please upload an image or video first!");
+      alert("Please upload an image first!");
       return;
     }
 
-    setLoading(true); // Show loading state
-
+    setLoading(true);
     const formData = new FormData();
     formData.append("image", selectedFile);
 
@@ -60,32 +39,30 @@ const Upload = () => {
       const data = await response.json();
       
       setPrediction(data.prediction);
-      setF1Score(data.f1_score);
-      setAccuracy(data.accuracy);
       setPredictionScore(data.prediction_score);
-      setLoading(false); // Hide loading state
-
-      // Navigate to the analysis page with state
+      setBoundingBox(data.bounding_box);
+      
+      setLoading(false);
       navigate("/analysis", {
-        state: { prediction: data.prediction, f1Score: data.f1_score, accuracy: data.accuracy, prediction_score:data.prediction_score},
+        state: { 
+          prediction: data.prediction, 
+          prediction_score: data.prediction_score, 
+          boundingBox: data.bounding_box,
+          imageUrl: `http://localhost:5000/output_image`
+        },
       });
 
     } catch (error) {
       console.error("Error:", error);
-      setLoading(false); // Hide loading state on error
+      setLoading(false);
     }
   };
 
   return (
-    <div
-      className={`upload-container ${dragging ? "dragging" : ""}`}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-      onDrop={handleDrop}
-    >
+    <div className="upload-container">
       <label className="upload-box">
-        <input type="file" accept="image/*,video/*" onChange={handleFileChange} hidden />
-        <FiUpload size={40} color="#0d0d93" />
+        <input type="file" accept="image/jpeg,image/png" onChange={handleFileChange} hidden />
+        <FiUpload size={40} />
         <p>Drag & Drop to upload or</p>
         <button className="upload-btn">Choose File</button>
       </label>
@@ -95,7 +72,6 @@ const Upload = () => {
       </button>
 
       {preview && <img src={preview} alt="Preview" className="upload-preview" />}
-      
     </div>
   );
 };
