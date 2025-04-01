@@ -48,7 +48,8 @@ const Upload = () => {
           prediction: data.prediction, 
           prediction_score: data.prediction_score, 
           boundingBox: data.bounding_box,
-          imageUrl: `http://localhost:5000/output_image`
+          imageUrl: `http://localhost:5000/output_image`,
+          heatmapUrl: `http://localhost:5000/output_heatmap`
         },
       });
 

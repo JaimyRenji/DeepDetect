@@ -8,7 +8,7 @@ ChartJS.register(BarElement, CategoryScale, LinearScale);
 
 const Analysis = () => {
   const location = useLocation();
-  const { imageUrl, prediction, prediction_score, boundingBox } = location.state || {};
+  const { imageUrl, prediction, prediction_score, boundingBox, heatmapUrl } = location.state || {};
 
   // Prepare chart data dynamically
   const chartData = {
@@ -51,6 +51,14 @@ const Analysis = () => {
       <h2 className="items-pred">
               Prediction: <span >{prediction}</span>
             </h2>
+            <p className="items">
+              Confidence Score: {prediction === "Real" ? 100 - Math.round(prediction_score * 100) : Math.round(prediction_score * 100)}%
+            </p>
+
+            {/* Display Bar Chart */}
+            <div className="chart-container">
+              <Bar data={chartData} options={chartOptions} />
+            </div>
       {prediction ? (
         <div className="content-container">
           {/* Left Side - Image & Bounding Box */}
@@ -66,6 +74,7 @@ const Analysis = () => {
       {prediction}
     </div>
   </div>
+
               </div>
             )}
 
@@ -78,20 +87,21 @@ const Analysis = () => {
 
           {/* Right Side - Confidence Score & Graph */}
           <div className="right-section">
+          {heatmapUrl && (
+    <div className="heatmap-container">
+        <h3 className="items">Grad-CAM Heatmap</h3>
+        <img src={heatmapUrl} alt="Grad-CAM Heatmap" className="heatmap-image" />
+    </div>
+)}
             
-            <p className="items">
-              Confidence Score: {prediction === "Real" ? 100 - Math.round(prediction_score * 100) : Math.round(prediction_score * 100)}%
-            </p>
 
-            {/* Display Bar Chart */}
-            <div className="chart-container">
-              <Bar data={chartData} options={chartOptions} />
-            </div>
+
           </div>
         </div>
       ) : (
         <p className="no-data">No analysis data available. Please upload and analyze an image first.</p>
       )}
+                
     </div>
   );
 };
