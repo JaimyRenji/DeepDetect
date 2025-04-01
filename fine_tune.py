@@ -58,3 +58,6 @@ print(f"Validation Accuracy: {accuracy:.4f}")
 
 # Save the fine-tuned model
 model.save('fine_tuned_model.h5')
+print(model.summary())
+#print("Class Indices:", train_generator.class_indices)
+#print("Validation Class Indices:", validation_generator.class_indices)
